@@ -1,0 +1,38 @@
+
+
+{% extends "base.html" %}
+
+{% block  title  %}Gestion empleados{% endblock   %}
+
+
+{% block  body  %}
+
+<div class="myform parametro" id="update" class="update">
+
+    <div class="card">
+        <div class="card-body">
+           
+        <form action="/modificar/" method="POST"
+    
+    
+        >{%csrf_token%}
+            <div class="form-group">
+              <label for="my-input">Codigo</label>
+                <input id="txtcodigo" class="form-control" value="{{empleado.codigo}}" type="text" name="txtcodigo" placeholder="codigo" minlength="3" maxlength="10" required>
+            
+    
+                <label for="my-input">Nombre</label>
+                <input id="txtnombre" class="form-control" type="text" name="txtnombre" placeholder="nombre" minlength="3" maxlength="10" required>
+            
+            </div>
+            <div class="form-group">
+             <button type="submit" class="btn btn-success btn-block text-white"> Modificar</button>   
+            </div>
+    
+        </form>
+    </div>
+    </div>
+    </div>
+
+
+{% endblock   %}

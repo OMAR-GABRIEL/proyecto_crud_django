@@ -1,0 +1,79 @@
+<!--herredamos la extructura de base.html-->
+{% extends "base.html" %}
+
+{% block  title  %}Gestion empleados{% endblock   %}
+
+
+{% block  body  %}
+<!--todo lo que escribamos estamos llenando en la base.html nuestro encabezado-->
+<h1>Bienvenidos</h1>
+<div class="row">
+    <div class="col-sm-12 col-md-6  col-lg-4 col-xl-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Title</h5>
+                <form action="/insertempleado/" method="POST"
+                >{%csrf_token%}
+                    <div class="form-group">
+                      <label for="my-input">Codigo</label>
+                        <input id="txtcodigo" class="form-control" type="text" name="txtcodigo" placeholder="codigo" minlength="3" maxlength="10" required>
+                    
+
+                        <label for="my-input">Nombre</label>
+                        <input id="txtnombre" class="form-control" type="text" name="txtnombre" placeholder="nombre" minlength="3" maxlength="10" required>
+                    
+                    </div>
+                    <div class="form-group">
+                     <button type="submit" class="btn btn-success btn-block text-white"> Guardar</button>   
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+            
+
+
+
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+
+        <div class="table-responsive">
+            <table  class="table table-striped">
+
+                <thead>
+                    <tr>
+                        <th> Codigo</th>
+                        <th>nombre</th>
+                        <th colspan="2">Opcion</th>
+                    </tr>
+                   
+                </thead>
+                <tbody>
+                    {%for e  in empleados %}
+                    <tr>    
+                        <td>{{e.codigo}}</td>
+                        <td>{{e.nombre}}</td>
+                        <td> <a href="editEmpleado/{{e.codigo}}" class="btn btn-warning">Edit</a> </td>
+                         
+                        <td> <a href="borrarEmpleado/{{e.codigo}}" class="btn btn-danger">eliminar</a> </td>
+                    </tr>   
+                    </tr>
+                    {% endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+
+<style>
+div#update {
+    position: relative;
+    top: -209px;
+}
+
+</style>
+
+{% endblock   %}
